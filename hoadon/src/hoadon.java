@@ -54,5 +54,32 @@ public class hoadon {
         System.out.println("tong tien: "+this.tongtien);
 
     }
+
+    public int getMaHD(){
+        return this.MaHD;
+    }
+    public void setMaHD(int MaHD){
+        this.MaHD = MaHD;
+    }
+    public int getMaSP(){
+        return this.MaNV;
+    }
+    public void setMaSP(int MaNV){
+        this.MaNV=MaNV;
+    }
+    public int getMaKH(){
+        return this.MaKH;
+    }
+    public void setMaKH(int MaKH){
+        this.MaKH=MaKH;
+    }
+    public LocalDate getNgayin()
+    {
+        return this.ngayin;
+    }
+    public void setNgayin(int ngay,int thang,int nam)
+    {
+        this.ngayin=LocalDate.of(ngay,thang,nam);
+    }
 }
     

@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 
 public class dssanpham implements isanpham {
- private    static  sanpham[] sp = new sanpham[0];
+ private static  sanpham[] sp = new sanpham[0];//
         Scanner sc = new Scanner(System.in);
         public int check(int id)
         {
@@ -48,13 +48,14 @@ public class dssanpham implements isanpham {
     System.out.println("Nhap so san pham moi can nhap: ");
     n = sc.nextInt();
     for(int i = 0; i < n; i++) {    
+        sanpham newSp = new sanpham();
+        newSp.nhap();
+        while (check(newSp.getMaSP()) == -1) {
+            System.out.println("Mã sản phẩm bị trùng, nhập lại:");
+            newSp.nhap();
+        }
         sp = Arrays.copyOf(sp, sp.length + 1);
-        sp[sp.length - 1] = new sanpham(); 
-        sp[sp.length - 1].nhap();
-      
-        System.out.println("trung ma san pham nhap lai");
-        sp[sp.length - 1].nhap();
-      
+        sp[sp.length - 1] = newSp;
     }
 }
  public void showDs()
@@ -62,7 +63,6 @@ public class dssanpham implements isanpham {
         for (sanpham sp1 : sp) {
             sp1.xuat();
         }
-
     } 
   
     public void sort() {
