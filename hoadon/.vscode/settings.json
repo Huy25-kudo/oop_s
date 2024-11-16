@@ -1,0 +1,15 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ],
+    "java.configuration.runtimes": [
+    {
+        "name": "JavaSE-11",
+        "path": "/path/to/your/java11",
+        "default": true
+    }
+]
+}
+
