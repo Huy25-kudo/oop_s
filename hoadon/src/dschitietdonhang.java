@@ -1,14 +1,45 @@
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class dschitietdonhang {
-    private chitiethoadon[] ds = new chitiethoadon[0];
+public class dschitietdonhang implements ichithiethoadon{ 
+    private static chitiethoadon[] ds = new chitiethoadon[0];
     Scanner sc = new Scanner(System.in);
     
-    public void taoDS(dssanpham ds1) {
+ // Hàm đọc file
+    public void docFile(String filePath, dssanpham dsSanPham) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(","); // Tách dữ liệu theo dấu phẩy
+                if (parts.length == 3) { // Đảm bảo có đủ 3 phần tử: MaHD, MaSP, SoLuong
+                    int maHD = Integer.parseInt(parts[0].trim());
+                    int maSP = Integer.parseInt(parts[1].trim());
+                    int soLuong = Integer.parseInt(parts[2].trim());
+
+                    // Tạo đối tượng chitiethoadon
+                    chitiethoadon ct = new chitiethoadon();
+                    ct.setMaHD(maHD);
+                    ct.setMaSP(maSP);
+                    ct.setSoluong(soLuong);
+                    ct.tinhtien(dsSanPham); // Tính tiền dựa trên thông tin sản phẩm
+                    // Thêm vào mảng ds
+                    ds = Arrays.copyOf(ds, ds.length + 1);
+                    ds[ds.length - 1] = ct;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Lỗi khi đọc file: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Lỗi định dạng dữ liệu: " + e.getMessage());
+        }
+    }
+    public void taoDS(dssanpham ds1)  {
         int n;
-        System.out.println("Nhập vào số lượng chi tiết hoá đơn:");
+        System.out.println("Nhap vao so luong chi tiet hoa đon:");
         n = sc.nextInt();
         for (int i = ds.length; i < n; i++) {
             ds = Arrays.copyOf(ds, ds.length + 1);
@@ -18,8 +49,8 @@ public class dschitietdonhang {
     }
    
     public void xuat() {
-        for(int i = 0; i < ds.length; i++) {
-            ds[i].xuat();
+        for (chitiethoadon d : ds) {
+            d.xuat();
         }
     }
     public int FindMHD(int id1){
@@ -41,16 +72,31 @@ public class dschitietdonhang {
             }
             return 0;
         }
+    @Override
        public double tongtien(int MaHD)
        {   int s=0;
-         for(int i=0;i<ds.length;i++)
-         {
-            if(MaHD ==ds[i].getMaHD()) 
-            {
-                s=s+ds[i].getThanhtien();
+        for (chitiethoadon d : ds) {
+            if (MaHD == d.getMaHD()) {
+                s = s + d.getThanhtien();
             }
         }
-   return s;
-}
-
+       return s;
+       }
+       public void xoa()
+    {
+        int id;
+        System.out.println("nhap Ma SP can xoa: ");
+        id=sc.nextInt();
+        System.out.println("nhap vao ma hoa don");
+        int id1=sc.nextInt();
+        for(int i=0;i<ds.length;i++)
+        {
+            if(ds[i].getMaSP()==id&&ds[i].getMaHD()==id1)
+            {
+                ds[i]=ds[i+1];
+                ds[i+1]=null;
+                ds = Arrays.copyOf(ds, ds.length - 1);
+            }
+        }
+    }
 }

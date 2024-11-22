@@ -11,6 +11,7 @@ public class chitiethoadon {
     }
     
     public void nhapct(dssanpham ds1){
+        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhap ma hoa don : ");
         this.MaHD=sc.nextInt();
@@ -43,7 +44,7 @@ public class chitiethoadon {
     public int getSoluong(){
         return this.soluong;
     }
-    public void setSoluong(){
+    public void setSoluong(int soluong){
         this.soluong=soluong;
     }
     public int  getMaSP(){

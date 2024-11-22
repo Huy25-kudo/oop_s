@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class qlsp {
     public static void main(String[] args) {
     dssanpham sp = new dssanpham();
+    @SuppressWarnings("resource")
     Scanner sc = new Scanner(System.in);
     int choice;
     do {
@@ -41,6 +42,7 @@ public class qlsp {
                 System.out.println("Lựa chọn không hợp lệ.");
         }
     } while (choice != 7);
+
 }
 
 }

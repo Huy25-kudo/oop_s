@@ -39,7 +39,7 @@ public class sanpham {
         public void nhap(){
             System.out.print("Nhap Ma SP: ");
             this.MaSP = sc.nextInt();
-            sc.nextLine(); // Consume newline left-over
+            sc.nextLine(); 
         
             System.out.print("Nhap Ten SP: ");
             this.tensp = sc.nextLine();
@@ -49,7 +49,7 @@ public class sanpham {
             sc.nextLine(); 
         
             System.out.print("Nhap Don Gia: ");
-            this.dongia = sc.nextInt();
+            this.dongia = sc.nextInt(); //dongia nhap tu bang nhap hang
             sc.nextLine();
         
             System.out.print("Nhap Chat Lieu: ");
@@ -57,7 +57,7 @@ public class sanpham {
         
             System.out.print("Nhap Do Day De: ");
             this.dodayde = sc.nextInt();
-            sc.nextLine(); // Consume newline left-over
+            sc.nextLine();
         
             System.out.print("Nhap Mau: ");
             this.mau = sc.nextLine();

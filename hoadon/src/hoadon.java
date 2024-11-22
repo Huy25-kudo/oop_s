@@ -30,7 +30,8 @@ public class hoadon {
 
     }
     public void nhap(dschitietdonhang ds1){
-      Scanner sc =new Scanner(System.in);
+      @SuppressWarnings("resource")
+    Scanner sc =new Scanner(System.in);
         System.out.println("Nhap MaHD :");
       this.MaHD=sc.nextInt();
       System.out.println("Nhap vao  MaNV :");
@@ -61,10 +62,10 @@ public class hoadon {
     public void setMaHD(int MaHD){
         this.MaHD = MaHD;
     }
-    public int getMaSP(){
+    public int getMaNV(){
         return this.MaNV;
     }
-    public void setMaSP(int MaNV){
+    public void setMaNV(int MaNV){
         this.MaNV=MaNV;
     }
     public int getMaKH(){
@@ -81,5 +82,10 @@ public class hoadon {
     {
         this.ngayin=LocalDate.of(ngay,thang,nam);
     }
+    public double getTongtien()
+    {
+        return this.tongtien;
+    }
+   
 }
     

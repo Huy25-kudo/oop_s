@@ -1,17 +1,49 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
 
 public class dssanpham implements isanpham {
- private static  sanpham[] sp = new sanpham[0];//
+    public void docFile(String filePath) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(","); // Tách dữ liệu theo dấu phẩy
+                if (parts.length == 8) { // Đảm bảo đủ thông tin 8 trường
+                    int maSP = Integer.parseInt(parts[0].trim());
+                    String tenSP = parts[1].trim();
+                    int soLuong = Integer.parseInt(parts[2].trim());
+                    int donGia = Integer.parseInt(parts[3].trim());
+                    String mau = parts[4].trim();
+                    String chatLieu = parts[5].trim();
+                    int doDayDe = Integer.parseInt(parts[6].trim());
+                    int size = Integer.parseInt(parts[7].trim());
+
+                    // Tạo đối tượng sản phẩm
+                    sanpham newSp = new sanpham(maSP, tenSP, soLuong, donGia, mau, chatLieu, doDayDe, size);
+
+                    // Thêm vào mảng `sp`
+                    sp = Arrays.copyOf(sp, sp.length + 1);
+                    sp[sp.length - 1] = newSp;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Lỗi khi đọc file: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Lỗi định dạng dữ liệu: " + e.getMessage());
+        }
+    }
+ private static sanpham[] sp = new sanpham[0];
         Scanner sc = new Scanner(System.in);
         public int check(int id)
         {
-            for(int i=0;i<sp.length;i++)
-            {
-                if(sp[i].getMaSP()==id)     
+        for (sanpham sp1 : sp) {
+            if (sp1.getMaSP() == id) {     
                 return -1;
             }
+        }
             return 1;
         }
    public void nhapSP(){
@@ -51,7 +83,7 @@ public class dssanpham implements isanpham {
         sanpham newSp = new sanpham();
         newSp.nhap();
         while (check(newSp.getMaSP()) == -1) {
-            System.out.println("Mã sản phẩm bị trùng, nhập lại:");
+            System.out.println("Ma san pham bi trung, nhap lai:");
             newSp.nhap();
         }
         sp = Arrays.copyOf(sp, sp.length + 1);
@@ -75,7 +107,7 @@ public class dssanpham implements isanpham {
                 }
             }
         }
-        System.out.println("Danh sách đã được sắp xếp theo đơn giá tăng dần!");
+      
     }
    
     //tim id roi lay don gia gan vao chi tiet san pham
@@ -122,7 +154,7 @@ public class dssanpham implements isanpham {
     }
     @Override
     public void timGanDungTen() {
-        System.out.println("Nhập tên sản phẩm cần tìm: ");
+        System.out.println("Nhap ten san pham can tim: ");
         sc.nextLine(); 
         String tenCanTim = sc.nextLine().toLowerCase(); 
         boolean found = false;
@@ -133,7 +165,7 @@ public class dssanpham implements isanpham {
             }
         }
         if (!found) {
-            System.out.println("Không tìm thấy sản phẩm nào gần đúng.");
+            System.out.println("Khong tim thay san pham nao gan dung.");
         }
     }
 }

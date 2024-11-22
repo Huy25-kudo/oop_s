@@ -18,7 +18,8 @@ public class Sneaker extends sanpham {
    }
    @Override
    public void nhap(){
-    Scanner sc = new Scanner(System.in);
+    @SuppressWarnings("resource")
+   Scanner sc = new Scanner(System.in);
     super.nhap();
     this.coGiay=sc.nextLine();
     this.ungdung=sc.nextLine();
@@ -30,6 +31,4 @@ public class Sneaker extends sanpham {
     System.out.println("Ung dung : "+this.ungdung);
 
    }
-
-
 }
