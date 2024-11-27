@@ -79,22 +79,35 @@ public class dssanpham implements isanpham {
         sp[current+i].nhap();
            }
     }
+    
     @Override
-    public void xoa()
-    {
-        int id;
-        System.out.println("nhap Ma SP can xoa: ");
-        id=sc.nextInt();
-        for(int i=0;i<sp.length;i++)
-        {
-            if(sp[i].getMaSP()==id)
-            {
-                sp[i]=sp[i+1];
-                sp[i+1]=null;
-                sp = Arrays.copyOf(sp, sp.length - 1);
+public void xoa() {
+    System.out.println("Nhap ma san pham can xoa: ");
+    int id = sc.nextInt(); // Nhập mã sản phẩm cần xóa
+    boolean found = false;
+
+    // Duyệt qua danh sách để tìm sản phẩm cần xóa
+    for (int i = 0; i < sp.length; i++) {
+        if (sp[i].getMaSP() == id) {
+            found = true;
+
+            // Dịch các phần tử sau vị trí cần xóa lên một vị trí
+            for (int j = i; j < sp.length - 1; j++) {
+                sp[j] = sp[j + 1];
             }
+
+            // Giảm kích thước mảng và loại bỏ phần tử cuối
+            sp = Arrays.copyOf(sp, sp.length - 1);
+            System.out.println("Đã xóa sản phẩm có mã: " + id);
+            break;
         }
     }
+
+    if (!found) {
+        System.out.println("Không tìm thấy sản phẩm với mã: " + id);
+    }
+}
+
     //tao danh sach moi
     @Override
  public void taoDS(){
@@ -196,14 +209,14 @@ public void choose(){
     Scanner sc = new Scanner(System.in);
     int choice;
     do {
-        System.out.println("\n1. Tạo danh sách sản phẩm");
-        System.out.println("2. Hiển thị danh sách sản phẩm");
-        System.out.println("3. Xóa sản phẩm");
-        System.out.println("4. Nhập thêm sản phẩm");
-        System.out.println("5. Tìm sản phẩm theo tên");
-        System.out.println("6. Tìm sản phẩm gần đúng tên");
+        System.out.println("\n1. Tao danh sach san pham");
+        System.out.println("2. Hien thi danh sach san pham");
+        System.out.println("3. Xoa san pham");
+        System.out.println("4. Nhap them san pham");
+        System.out.println("5. Tim san pham theo ten");
+        System.out.println("6. Tim san pham gan dung ten");
         System.out.println("7. Thoát");
-        System.out.print("Nhập lựa chọn: ");
+        System.out.print("Nhap lua chon: ");
         choice = sc.nextInt();
         switch (choice) {
             case 1:

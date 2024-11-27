@@ -34,6 +34,9 @@ public class chitiethoadon {
     {
         return this.thanhtien;
     }
+    public void setThanhtien(int thanhtien){
+        this.thanhtien = thanhtien;
+    }
     public int getMaHD(){
         return this.MaHD;
     }

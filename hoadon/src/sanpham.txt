@@ -1,0 +1,9 @@
+1,Sản phẩm A,10,50000,Đỏ,Nilon,2,38
+2,Sản phẩm B,15,60000,Xanh,Dệt,3,39
+3,Sản phẩm C,20,55000,Vàng,Cao su,4,40
+4,Sản phẩm D,25,70000,Trắng,Vải,5,41
+5,Sản phẩm E,30,75000,Đen,Nhựa,6,42
+6,Sản phẩm F,35,80000,Tím,Da,2,38
+7,Sản phẩm G,40,90000,Hồng,Gỗ,3,39
+8,Sản phẩm H,45,95000,Be,Sợi tổng hợp,4,40
+9,Sản phẩm I,50,100000,Xanh lá,Bê tông,5,41

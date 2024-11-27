@@ -7,7 +7,8 @@ public class qlsp {
         dshoadon hd = new dshoadon();
         qlbh ql = new qlbh();
         ql.nhapfile(sp,ct,hd);
-        sp.choose();
+        ql.choose(sp, ct, hd);
+        ql.ghiFile(sp, ct, hd);
     }
 
 }

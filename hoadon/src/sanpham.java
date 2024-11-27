@@ -1,6 +1,5 @@
 
 import java.util.Scanner;
-import javax.print.DocFlavor;
 
 
 public class sanpham {
@@ -69,13 +68,13 @@ public class sanpham {
         
     
     public void xuat(){
-        System.out.println("Mã Sản phẩm : "+this.MaSP);
-        System.out.println("Tên Sản phẩm : "+this.tensp);
-        System.out.println("Số lượng hiện có: " +this.sl);
-        System.out.println("Mẫu :" + this.mau);
-        System.out.println("Gía: "+this.dongia);
-        System.out.println("Chất liệu :"+this.chatlieu);
-        System.out.println("Độ dày của đế :"+this.dodayde);
+        System.out.println("Ma San pham : "+this.MaSP);
+        System.out.println("Ten San pham : "+this.tensp);
+        System.out.println("So luong hien co: " +this.sl);
+        System.out.println("Mau :" + this.mau);
+        System.out.println("Gia: "+this.dongia);
+        System.out.println("Chat lieu :"+this.chatlieu);
+        System.out.println("Do day cua de :"+this.dodayde);
         System.out.println("Size cua giay : "+this.size);
     }
     public int getMaSP(){
