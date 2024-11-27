@@ -1,5 +1,7 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -35,6 +37,26 @@ public class dssanpham implements isanpham {
             System.out.println("Lỗi định dạng dữ liệu: " + e.getMessage());
         }
     }
+    public void ghiFile(String filePath) {
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+        for (sanpham sp1 : sp) {
+            // Ghi thông tin sản phẩm vào file, cách nhau bởi dấu phẩy
+            bw.write(sp1.getMaSP() + "," +
+                     sp1.getTensp() + "," +
+                     sp1.getSl() + "," +
+                     sp1.getDongia() + "," +
+                     sp1.getMau() + "," +
+                     sp1.getChatlieu() + "," +
+                     sp1.getDodayde() + "," +
+                     sp1.getSize());
+            bw.newLine(); // Xuống dòng sau mỗi sản phẩm
+        }
+        System.out.println("Ghi file thành công!");
+    } catch (IOException e) {
+        System.out.println("Lỗi khi ghi file: " + e.getMessage());
+    }
+}
+
  private static sanpham[] sp = new sanpham[0];
         Scanner sc = new Scanner(System.in);
         public int check(int id)
@@ -168,4 +190,48 @@ public class dssanpham implements isanpham {
             System.out.println("Khong tim thay san pham nao gan dung.");
         }
     }
+
+public void choose(){
+    @SuppressWarnings("resource")
+    Scanner sc = new Scanner(System.in);
+    int choice;
+    do {
+        System.out.println("\n1. Tạo danh sách sản phẩm");
+        System.out.println("2. Hiển thị danh sách sản phẩm");
+        System.out.println("3. Xóa sản phẩm");
+        System.out.println("4. Nhập thêm sản phẩm");
+        System.out.println("5. Tìm sản phẩm theo tên");
+        System.out.println("6. Tìm sản phẩm gần đúng tên");
+        System.out.println("7. Thoát");
+        System.out.print("Nhập lựa chọn: ");
+        choice = sc.nextInt();
+        switch (choice) {
+            case 1:
+                taoDS();
+                break;
+            case 2:
+                showDs();
+                break;
+            case 3:
+                xoa();
+                break;
+            case 4:
+                nhapSP();
+                break;
+            case 5:
+                TimTheoTen();
+                break;
+            case 6:
+                timGanDungTen();
+                break;
+            case 7:
+                System.out.println("Thoát chương trình.");
+                break;
+            default:
+                System.out.println("Lựa chọn không hợp lệ.");
+        }
+    } while (choice != 7);
+
+}
+
 }

@@ -2,7 +2,7 @@
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class hoadon {
+public class hoadon implements ihoadon {
     private int MaHD;
     private int MaNV;
     private int MaKH;
@@ -86,6 +86,8 @@ public class hoadon {
     {
         return this.tongtien;
     }
-   
+    public void choose(){
+        
+    }
 }
     

@@ -1,5 +1,6 @@
 
 import java.util.Scanner;
+import javax.print.DocFlavor;
 
 
 public class sanpham {
@@ -121,5 +122,11 @@ public int getDodayde(){
 }
 public void  setDodayde(int dodayde1){
    this.dodayde=dodayde1;
+}
+public int getSize(){
+    return this.size;
+}
+public void setSize(int size1){
+    this.size=size1;
 }
 }

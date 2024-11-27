@@ -38,7 +38,7 @@ public class dshoadon {
             System.out.println("Lỗi định dạng dữ liệu: " + e.getMessage());
         }
     }
-   public  void TaoDS(dschitietdonhang ds1){
+   public void TaoDS(dschitietdonhang ds1){
         int n;
         System.out.println("nhap vao so luong hoadon");
          n = sc.nextInt();
@@ -144,5 +144,37 @@ public hoadon FindID(int id1){
         int nam=sc.nextInt();
         hd.setNgayin(ngay,thang,nam);
      }
+   }
+   public void choose(dschitietdonhang ds1){
+   int choice;
+    do {
+        System.out.println("\n1. Tạo danh sách sản phẩm");
+        System.out.println("2. Hiển thị danh sách sản phẩm");
+        System.out.println("3. Xóa sản phẩm");
+        System.out.println("4. sua");
+        System.out.println("5. Thoát");
+        System.out.print("Nhập lựa chọn: ");
+       choice = sc.nextInt();
+        switch (choice) {
+            case 1:
+                TaoDS(ds1);
+                break;
+            case 2:
+                xuat();
+                break;
+            case 3:
+                xoa();
+                break;
+            case 4:
+                sua();
+                break;
+            case 5:
+                System.out.println("Thoát chương trình.");
+                break;
+            default:
+                System.out.println("Lựa chọn không hợp lệ.");
+        }
+     } while (choice != 5);
+
    }
 }
