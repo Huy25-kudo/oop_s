@@ -17,7 +17,7 @@ public class dschitietdonhang implements ichithiethoadon{
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(","); // Tách dữ liệu theo dấu phẩy
-                if (parts.length == 3) { // Đảm bảo có đủ 3 phần tử: MaHD, MaSP, SoLuong
+                if (parts.length == 4) { // Đảm bảo có đủ 3 phần tử: MaHD, MaSP, SoLuong
                     int maHD = Integer.parseInt(parts[0].trim());
                     int maSP = Integer.parseInt(parts[1].trim());
                     int soLuong = Integer.parseInt(parts[2].trim());
@@ -131,13 +131,13 @@ public class dschitietdonhang implements ichithiethoadon{
         do { 
             System.out.println("1. Tao danh sach chi tiet hao don ");
             System.out.println("2. hien danh sach chi tiet hoa don");
-            System.out.println("3. Xoa hoa don");
+            System.out.println("3. Xoa chi tiet don hang");
             System.out.println("4.thoat");
             choice = sc.nextInt();
             switch(choice) {
                 case 1:
                 taoDS(ds1);
-                    break;
+                break;
                 case 2:
                 xuat();
                 break;

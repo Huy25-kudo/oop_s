@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 
 public class dssanpham implements isanpham {
+    private static sanpham[] sp = new sanpham[0];
+
     public void docFile(String filePath) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -22,10 +24,8 @@ public class dssanpham implements isanpham {
                     String chatLieu = parts[5].trim();
                     int doDayDe = Integer.parseInt(parts[6].trim());
                     int size = Integer.parseInt(parts[7].trim());
-
                     // Tạo đối tượng sản phẩm
                     sanpham newSp = new sanpham(maSP, tenSP, soLuong, donGia, mau, chatLieu, doDayDe, size);
-
                     // Thêm vào mảng `sp`
                     sp = Arrays.copyOf(sp, sp.length + 1);
                     sp[sp.length - 1] = newSp;
@@ -57,7 +57,6 @@ public class dssanpham implements isanpham {
     }
 }
 
- private static sanpham[] sp = new sanpham[0];
         Scanner sc = new Scanner(System.in);
         public int check(int id)
         {
@@ -72,14 +71,14 @@ public class dssanpham implements isanpham {
         int n;
         System.out.println("nhap so san pham can nhap them: ");
         n=sc.nextInt();
+        
         int current=sp.length; sp = Arrays.copyOf(sp,sp.length+n);
        for(int i=0;i<n;i++)
        { 
         sp[current+i] = new sanpham();
         sp[current+i].nhap();
-           }
+        }
     }
-    
     @Override
 public void xoa() {
     System.out.println("Nhap ma san pham can xoa: ");
@@ -106,16 +105,31 @@ public void xoa() {
     if (!found) {
         System.out.println("Không tìm thấy sản phẩm với mã: " + id);
     }
-}
-
+    }
+  
     //tao danh sach moi
     @Override
  public void taoDS(){
     int n;
     System.out.println("Nhap so san pham moi can nhap: ");
     n = sc.nextInt();
+  
+    int chon;
     for(int i = 0; i < n; i++) {    
-        sanpham newSp = new sanpham();
+        System.out.println("Muon nhap sneaker hay cao_got :");
+        System.out.println("1.Sneaker");
+        System.out.println("2.Cao_got");
+        sanpham newSp;
+        chon = sc.nextInt();
+        if(chon==1)
+        {
+             newSp = new Sneaker();
+        } else if(chon==2){
+            newSp = new caogot();
+        } else 
+        {
+            newSp= new sanpham();
+        }
         newSp.nhap();
         while (check(newSp.getMaSP()) == -1) {
             System.out.println("Ma san pham bi trung, nhap lai:");

@@ -21,7 +21,9 @@ public class Sneaker extends sanpham {
     @SuppressWarnings("resource")
    Scanner sc = new Scanner(System.in);
     super.nhap();
+    System.out.println("Nhap co giay: ");
     this.coGiay=sc.nextLine();
+    System.out.println("Nhap vao ung dung");
     this.ungdung=sc.nextLine();
    }
    @Override
