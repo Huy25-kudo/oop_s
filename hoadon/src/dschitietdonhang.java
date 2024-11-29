@@ -126,13 +126,25 @@ public class dschitietdonhang implements ichithiethoadon{
             System.out.println("Không tìm thấy sản phẩm với mã: " + id);
         }
     }
+    public void nhapthem(dssanpham sp){
+        int n;
+        System.out.println("nhap vao so luong can them :");
+        n=sc.nextInt();
+        int current=ds.length;
+        ds=Arrays.copyOf(ds, current + n);
+        for(int i=0;i<n;i++){
+             ds[current+i] = new chitiethoadon();
+             ds[current+i].nhapct(sp);
+        }
+     }
     public void choose(dssanpham ds1){
         int choice;
         do { 
             System.out.println("1. Tao danh sach chi tiet hao don ");
             System.out.println("2. hien danh sach chi tiet hoa don");
             System.out.println("3. Xoa chi tiet don hang");
-            System.out.println("4.thoat");
+            System.out.println("4.them");
+            System.out.println("5.thoat");
             choice = sc.nextInt();
             switch(choice) {
                 case 1:
@@ -145,11 +157,15 @@ public class dschitietdonhang implements ichithiethoadon{
                 xoa();
                 break;
                 case 4:
+                 nhapthem(ds1);
+                 break;
+                case 5:
                 System.out.println("Thoát chương trình.");
                 break;
                 default:
                 System.out.println("Lựa chọn không hợp lệ.");
             }
-        } while (choice!=4);
+        } while (choice!=5);
     }
+      
 }

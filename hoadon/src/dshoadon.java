@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -174,6 +175,44 @@ public hoadon FindID(int id1){
         hd.setNgayin(ngay,thang,nam);
      }
    }
+   public void nhapthem(dschitietdonhang ds1){
+   int n;
+   System.out.println("nhap vao so luong can them :");
+   n=sc.nextInt();
+   int current=dshd.length;
+   dshd=Arrays.copyOf(dshd, current + n);
+   for(int i=0;i<n;i++){
+        dshd[current+i] = new hoadon();
+        dshd[current+i].nhap(ds1);
+   }
+} 
+  public void tkquy(){
+    int quy1=0;
+    int quy2=0;
+    int quy3=0;
+    int quy4=0;
+ 
+    for(hoadon hd1:dshd){
+        int month=hd1.getNgayin().getMonthValue();
+        if(month<=3)
+        {
+            quy1++;
+        } else if(month<=6)
+        {
+            quy2++;
+        } else if(month<=9)
+        {
+            quy3++;
+        }
+        else {
+            quy4++;
+        }
+    }
+  System.out.println("so hoa don trong quy 1"+ quy1);
+  System.out.println("so hoa don trong quy 2"+ quy2);
+   System.out.println("so hoa don trong quy 3" + quy3);
+   System.out.println("so hoa don trong quy 4" +quy4);
+  }
    public void choose(dschitietdonhang ds1){
    int choice;
     do {
@@ -182,7 +221,9 @@ public hoadon FindID(int id1){
         System.out.println("3. Xoa san pham");
         System.out.println("4. sua");
         System.out.println("5.tinh tong trong khoang thoi gian");
-        System.out.println("6. Thoát");
+        System.out.println("6.them");
+        System.out.println("7. cac quy:");
+        System.out.println("7. Thoat");
         System.out.print("Nhập lựa chọn: ");
        choice = sc.nextInt();
         switch(choice) {
@@ -207,23 +248,34 @@ public hoadon FindID(int id1){
             int thang=sc.nextInt();
             System.out.print("/");
             int nam=sc.nextInt();
-            start=LocalDate.of(nam, thang, ngay);
             System.out.println("nhap vao end");
             int ngay1=sc.nextInt();
             System.out.print("/");
             int thang1=sc.nextInt(); 
             System.out.print("/");
             int nam1=sc.nextInt();
-            end=LocalDate.of(nam1, thang1, ngay1);
-            TongMonth(start, end);
+       try {
+          start = LocalDate.of(nam, thang, ngay);
+          end = LocalDate.of(nam1, thang1, ngay1);
+          } catch (DateTimeException e) {
+         System.out.println("Lỗi ngày tháng nhập vào không hợp lệ: " + e.getMessage());
+              return;
+           }
+            System.out.println(" tong: " + TongMonth(start, end));
             break;
             case 6:
+            nhapthem(ds1);
+            break;
+            case 7:
+            tkquy();
+            break;
+            case 8:
                 System.out.println("Thoát chương trình.");
                 break;
             default:
                 System.out.println("Lựa chọn không hợp lệ.");
         }
-     } while (choice != 6);
-
-   }
+     } while (choice != 8);
+}
+      
 }

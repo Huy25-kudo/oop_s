@@ -9,7 +9,61 @@ import java.util.Scanner;
 
 public class dssanpham implements isanpham {
     private static sanpham[] sp = new sanpham[0];
+        Scanner sc = new Scanner(System.in);
+    int length;
+        public int check(int id)
+        {
+        for (sanpham sp1 : sp) {
+            if (sp1.getMaSP() == id) {     
+                return -1;
+            }
+        }
+            return 1;
+        }
+        @Override
 
+        public void taoDS(){
+            int n;
+            System.out.println("Nhap so san pham moi can nhap: ");
+            n = sc.nextInt();
+          
+            int chon;
+            for(int i = 0; i < n; i++) {    
+                System.out.println("Muon nhap sneaker hay cao_got :");
+                System.out.println("1.Sneaker");
+                System.out.println("2.Cao_got");
+                sanpham newSp;
+                chon = sc.nextInt();
+                if(chon==1)
+                {
+                    newSp = new Sneaker();
+                } else if(chon==2){
+                   newSp = new caogot();
+                } else 
+                {
+                   newSp= new Sneaker();
+                }
+                newSp.nhap();
+                while (check(newSp.getMaSP()) == -1) {
+                    System.out.println("Ma san pham bi trung, nhap lai:");
+                    newSp.nhap();
+                }
+                sp = Arrays.copyOf(sp, sp.length + 1);
+                sp[sp.length - 1] = newSp;
+            }
+        }
+   public void nhapSP(){
+        int n;
+        System.out.println("nhap so san pham can nhap them: ");
+        n=sc.nextInt();
+        
+        int current=sp.length; sp = Arrays.copyOf(sp,sp.length+n);
+       for(int i=0;i<n;i++)
+       { 
+        sp[current+i] = new sanpham();
+        sp[current+i].nhap();
+        }
+    }
     public void docFile(String filePath) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -57,95 +111,41 @@ public class dssanpham implements isanpham {
     }
 }
 
-        Scanner sc = new Scanner(System.in);
-        public int check(int id)
-        {
-        for (sanpham sp1 : sp) {
-            if (sp1.getMaSP() == id) {     
-                return -1;
-            }
-        }
-            return 1;
-        }
-   public void nhapSP(){
-        int n;
-        System.out.println("nhap so san pham can nhap them: ");
-        n=sc.nextInt();
-        
-        int current=sp.length; sp = Arrays.copyOf(sp,sp.length+n);
-       for(int i=0;i<n;i++)
-       { 
-        sp[current+i] = new sanpham();
-        sp[current+i].nhap();
-        }
-    }
-    @Override
-public void xoa() {
-    System.out.println("Nhap ma san pham can xoa: ");
-    int id = sc.nextInt(); // Nhập mã sản phẩm cần xóa
-    boolean found = false;
-
-    // Duyệt qua danh sách để tìm sản phẩm cần xóa
-    for (int i = 0; i < sp.length; i++) {
-        if (sp[i].getMaSP() == id) {
-            found = true;
-
-            // Dịch các phần tử sau vị trí cần xóa lên một vị trí
-            for (int j = i; j < sp.length - 1; j++) {
-                sp[j] = sp[j + 1];
-            }
-
-            // Giảm kích thước mảng và loại bỏ phần tử cuối
-            sp = Arrays.copyOf(sp, sp.length - 1);
-            System.out.println("Đã xóa sản phẩm có mã: " + id);
-            break;
-        }
-    }
-
-    if (!found) {
-        System.out.println("Không tìm thấy sản phẩm với mã: " + id);
-    }
-    }
-  
     //tao danh sach moi
-    @Override
- public void taoDS(){
-    int n;
-    System.out.println("Nhap so san pham moi can nhap: ");
-    n = sc.nextInt();
-  
-    int chon;
-    for(int i = 0; i < n; i++) {    
-        System.out.println("Muon nhap sneaker hay cao_got :");
-        System.out.println("1.Sneaker");
-        System.out.println("2.Cao_got");
-        sanpham newSp;
-        chon = sc.nextInt();
-        if(chon==1)
-        {
-             newSp = new Sneaker();
-        } else if(chon==2){
-            newSp = new caogot();
-        } else 
-        {
-            newSp= new sanpham();
-        }
-        newSp.nhap();
-        while (check(newSp.getMaSP()) == -1) {
-            System.out.println("Ma san pham bi trung, nhap lai:");
-            newSp.nhap();
-        }
-        sp = Arrays.copyOf(sp, sp.length + 1);
-        sp[sp.length - 1] = newSp;
-    }
-}
  public void showDs()
  {
         for (sanpham sp1 : sp) {
             sp1.xuat();
         }
     } 
-  
+    @Override
+
+    public void xoa() {
+        System.out.println("Nhap ma san pham can xoa: ");
+        int id = sc.nextInt(); // Nhập mã sản phẩm cần xóa
+        boolean found = false;
+    
+        // Duyệt qua danh sách để tìm sản phẩm cần xóa
+        for (int i = 0; i < sp.length; i++) {
+            if (sp[i].getMaSP() == id) {
+                found = true;
+    
+                // Dịch các phần tử sau vị trí cần xóa lên một vị trí
+                for (int j = i; j < sp.length - 1; j++) {
+                    sp[j] = sp[j + 1];
+                }
+    
+                // Giảm kích thước mảng và loại bỏ phần tử cuối
+                sp = Arrays.copyOf(sp, sp.length - 1);
+                System.out.println("Đã xóa sản phẩm có mã: " + id);
+                break;
+            }
+        }
+    
+        if (!found) {
+            System.out.println("Không tìm thấy sản phẩm với mã: " + id);
+        }
+        }
     public void sort() {
         for (int i = 0; i < sp.length - 1; i++) {
             for (int j = 0; j < sp.length - 1 - i; j++) {
@@ -204,8 +204,7 @@ public void xoa() {
     @Override
     public void timGanDungTen() {
         System.out.println("Nhap ten san pham can tim: ");
-        sc.nextLine(); 
-        String tenCanTim = sc.nextLine().toLowerCase(); 
+        String tenCanTim = sc.nextLine().trim().toLowerCase(); 
         boolean found = false;
         for (sanpham sp1 : sp) {
             if (sp1.getTensp().toLowerCase().contains(tenCanTim)) {
@@ -258,7 +257,6 @@ public void choose(){
                 System.out.println("Lựa chọn không hợp lệ.");
         }
     } while (choice != 7);
-
 }
-
+     
 }
