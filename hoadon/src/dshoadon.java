@@ -208,10 +208,10 @@ public hoadon FindID(int id1){
             quy4++;
         }
     }
-  System.out.println("so hoa don trong quy 1"+ quy1);
-  System.out.println("so hoa don trong quy 2"+ quy2);
-   System.out.println("so hoa don trong quy 3" + quy3);
-   System.out.println("so hoa don trong quy 4" +quy4);
+  System.out.println("so hoa don trong quy 1 :"+ quy1);
+  System.out.println("so hoa don trong quy 2 :"+ quy2);
+   System.out.println("so hoa don trong quy 3 :" + quy3);
+   System.out.println("so hoa don trong quy 4 : " +quy4);
   }
    public void choose(dschitietdonhang ds1){
    int choice;
@@ -223,7 +223,7 @@ public hoadon FindID(int id1){
         System.out.println("5.tinh tong trong khoang thoi gian");
         System.out.println("6.them");
         System.out.println("7. cac quy:");
-        System.out.println("7. Thoat");
+        System.out.println("8. Thoat");
         System.out.print("Nhập lựa chọn: ");
        choice = sc.nextInt();
         switch(choice) {

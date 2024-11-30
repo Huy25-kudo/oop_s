@@ -2,7 +2,7 @@
 import java.util.Scanner;
 
 
-public class sanpham {
+public abstract  class sanpham {
     private int MaSP;
     private String  tensp;
     private  int sl;

@@ -56,12 +56,23 @@ public class dssanpham implements isanpham {
         int n;
         System.out.println("nhap so san pham can nhap them: ");
         n=sc.nextInt();
-        
+        int chon;
         int current=sp.length; sp = Arrays.copyOf(sp,sp.length+n);
        for(int i=0;i<n;i++)
-       { 
-        sp[current+i] = new sanpham();
-        sp[current+i].nhap();
+       {  sanpham newSp;
+         System.out.println("nhap chon:");
+         chon=sc.nextInt();
+        if(chon==1)
+        {
+            newSp = new Sneaker();
+        } else if(chon==2){
+           newSp = new caogot();
+        } else 
+        {
+           newSp= new Sneaker();
+        }    newSp.nhap();
+        sp[current+i]=newSp;
+    
         }
     }
     public void docFile(String filePath) {
@@ -69,28 +80,56 @@ public class dssanpham implements isanpham {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(","); // Tách dữ liệu theo dấu phẩy
-                if (parts.length == 8) { // Đảm bảo đủ thông tin 8 trường
-                    int maSP = Integer.parseInt(parts[0].trim());
-                    String tenSP = parts[1].trim();
-                    int soLuong = Integer.parseInt(parts[2].trim());
-                    int donGia = Integer.parseInt(parts[3].trim());
-                    String mau = parts[4].trim();
-                    String chatLieu = parts[5].trim();
-                    int doDayDe = Integer.parseInt(parts[6].trim());
-                    int size = Integer.parseInt(parts[7].trim());
-                    // Tạo đối tượng sản phẩm
-                    sanpham newSp = new sanpham(maSP, tenSP, soLuong, donGia, mau, chatLieu, doDayDe, size);
-                    // Thêm vào mảng `sp`
-                    sp = Arrays.copyOf(sp, sp.length + 1);
-                    sp[sp.length - 1] = newSp;
+                if (parts.length > 0) {
+                    String type = parts[0].trim(); // Loại sản phẩm ở cột đầu tiên
+                    sanpham newSp = null;
+    
+                    try {
+                        if ("Sneaker".equalsIgnoreCase(type) && parts.length == 11) { // Đảm bảo Sneaker có đủ 11 trường
+                            int maSP = Integer.parseInt(parts[1].trim());
+                            String tenSP = parts[2].trim();
+                            int soLuong = Integer.parseInt(parts[3].trim());
+                            int donGia = Integer.parseInt(parts[4].trim());
+                            String mau = parts[5].trim();
+                            String chatLieu = parts[6].trim();
+                            int doDayDe = Integer.parseInt(parts[7].trim());
+                            int size = Integer.parseInt(parts[8].trim());
+                            String coGiay = parts[9].trim();
+                            String ungDung = parts[10].trim();
+                            newSp = new Sneaker(maSP, tenSP, soLuong, donGia, mau, chatLieu, doDayDe, size, coGiay, ungDung);
+                        } else if ("Cao_got".equalsIgnoreCase(type) && parts.length == 11) { // Đảm bảo Cao_got có đủ 11 trường
+                            int maSP = Integer.parseInt(parts[1].trim());
+                            String tenSP = parts[2].trim();
+                            int soLuong = Integer.parseInt(parts[3].trim());
+                            int donGia = Integer.parseInt(parts[4].trim());
+                            String mau = parts[5].trim();
+                            String chatLieu = parts[6].trim();
+                            int doDayDe = Integer.parseInt(parts[7].trim());
+                            int size = Integer.parseInt(parts[8].trim());
+                            String kieuGot = parts[9].trim();
+                            int deCao = Integer.parseInt(parts[10].trim());
+                            newSp = new caogot(maSP, tenSP, soLuong, donGia, mau, chatLieu, doDayDe, size, kieuGot, deCao);
+                        }
+    
+                        if (newSp != null) {
+                            sp = Arrays.copyOf(sp, sp.length + 1); // Mở rộng mảng và thêm sản phẩm mới
+                            sp[sp.length - 1] = newSp;
+                        } else {
+                            System.out.println("Dữ liệu không hợp lệ, dòng bị bỏ qua: " + line);
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Lỗi định dạng số, dòng bị bỏ qua: " + line);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("Thiếu trường dữ liệu, dòng bị bỏ qua: " + line);
+                    }
                 }
             }
+            System.out.println("Đọc file thành công!");
         } catch (IOException e) {
             System.out.println("Lỗi khi đọc file: " + e.getMessage());
-        } catch (NumberFormatException e) {
-            System.out.println("Lỗi định dạng dữ liệu: " + e.getMessage());
         }
     }
+    
     public void ghiFile(String filePath) {
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
         for (sanpham sp1 : sp) {

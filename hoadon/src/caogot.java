@@ -8,7 +8,7 @@ Scanner sc = new Scanner(System.in);
 public caogot(){
 
 };
-public caogot(int MaSP,String tensp, int sl,int dongia,String mau,String chatlieu,int dodayde,String kieugot,int decao,int size){
+public caogot(int MaSP,String tensp, int sl,int dongia,String mau,String chatlieu,int dodayde,int size,String kieugot,int decao){
 super(MaSP,tensp,sl,dongia,mau,chatlieu,dodayde,size);
 this.kieugot=kieugot;
 this.decao=decao;
