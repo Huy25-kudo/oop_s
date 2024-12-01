@@ -222,7 +222,7 @@ public hoadon FindID(int id1){
         System.out.println("4. sua");
         System.out.println("5.tinh tong trong khoang thoi gian");
         System.out.println("6.them");
-        System.out.println("7. cac quy:");
+        System.out.println("7. thong ke cac quy:");
         System.out.println("8. Thoat");
         System.out.print("Nhập lựa chọn: ");
        choice = sc.nextInt();
